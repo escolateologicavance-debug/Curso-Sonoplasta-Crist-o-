@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2 - A Mesa de Som</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
+        .container { max-width: 700px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        
+        h1 { color: #d32f2f; border-bottom: 2px solid #d32f2f; padding-bottom: 10px; }
+        .img-tecnica { width: 100%; border-radius: 8px; margin: 20px 0; border: 1px solid #ddd; }
+        
+        .controles-audio { background: #fff3f3; padding: 15px; border-radius: 10px; margin: 20px 0; text-align: center; border: 1px dashed #d32f2f; }
+        .btn-audio { background: #d32f2f; color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-size: 1rem; margin: 5px; }
+        .btn-audio.stop { background: #555; }
+
+        .analogia-box { background: #fffde7; padding: 20px; border-left: 5px solid #fbc02d; margin: 20px 0; font-style: italic; }
+        .sessao { margin-top: 25px; }
+        .botao-desc { margin-bottom: 15px; padding: 10px; background: #f9f9f9; border-radius: 5px; }
+        .botao-desc b { color: #d32f2f; display: block; font-size: 1.1rem; }
+
+        footer { margin-top: 40px; text-align: center; border-top: 1px solid #ddd; padding-top: 20px; }
+        .btn-voltar { color: #d32f2f; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Módulo 2: O Coração do Som - A Mesa</h1>
+
+    <div class="controles-audio">
+        <strong>Ouvir Instruções do Mestre:</strong><br><br>
+        <button class="btn-audio" onclick="playAudio()">▶ Play</button>
+        <button class="btn-audio stop" onclick="stopAudio()">■ Parar</button>
+    </div>
+
+    <div class="analogia-box" id="texto-analogia">
+        "O sonoplasta é como um motorista em uma estrada sinuosa. Assim como o motorista nunca tira as mãos do volante enquanto dirige, o técnico de som NÃO deve retirar as mãos da mesa durante o culto. A voz humana oscila: ora o pregador grita, ora o cantor sussurra. Você é o compensador vivo dessas variações."
+    </div>
+
+    <img src="mesa-detalhes.png" alt="Detalhes dos botões da mesa de som" class="img-tecnica">
+
+    <div id="texto-aula">
+        <div class="sessao">
+            <p>Para operar com maestria, você deve conhecer cada centímetro da sua ferramenta. Vamos entender o que cada botão faz:</p>
+            
+            <div class="botao-desc">
+                <b>Passo 1. GAIN (Ganho/Trim):</b> É a "torneira" de entrada. Ele ajusta a sensibilidade. Se estiver baixo demais, o som fica sumido e com chiado. Se estiver alto demais, o som "racha" (distorce).
+            </div>
+
+            <div class="botao-desc">
+                <b>Passo 2. HIGH (Agudos/Brilho):</b> Controla a clareza. Se a voz parece que está saindo de dentro de uma caixa de papelão, ela precisa de um pouco mais de agudo. Mas cuidado: excesso causa microfonia "apitada".
+            </div>
+
+            <div class="botao-desc">
+                <b>Passo 3. MID (Médios):</b> É onde mora a inteligibilidade da voz. É aqui que você ajusta para que as palavras sejam entendidas com clareza no fundo do templo.
+            </div>
+
+            <div class="botao-desc">
+                <b>Passo 4. LOW (Graves/Peso):</b> Dá corpo ao som. Se a voz está "magra" ou fina, você abre o grave. <strong>Cuidado com o Efeito Puf:</strong> Sabe aquele estouro quando alguém fala "P" ou "B" muito perto do microfone? Isso é excesso de grave ou falta de um filtro (Low Cut).
+            </div>
+
+            <div class="botao-desc">
+                <b>Passo 5. PAN (Panorama):</b> Define se o som sai mais na caixa da esquerda ou da direita. No contexto cristão, geralmente mantemos no centro para que todos ouçam igual.
+            </div>
+
+            <div class="botao-desc">
+                <b>Passo 6. FADER (O Deslizante):</b> É o controle final de volume. É aqui que sua mão deve morar, sempre pronta para baixar o som em um grito inesperado ou subir quando a voz falhar.
+            </div>
+        </div>
+
+        <div class="sessao">
+            <h3>A Regra de Ouro: Saia da Mesa!</h3>
+            <p>Não confie apenas no que ouve na cabine. O som lá pode ser diferente do que a congregação ouve. Periodicamente, vá à nave do templo, caminhe pelos ângulos diferentes e perceba se o som está chegando com a mesma qualidade nos fundos e nas laterais.</p>
+        </div>
+    </div>
+
+    <footer>
+        <a href="index.html" class="btn-voltar">⬅ Voltar ao Menu Principal</a>
+    </footer>
+</div>
+
+<script>
+    let synth = window.speechSynthesis;
+    function playAudio() {
+        synth.cancel();
+        // Combinando analogia e texto para o narrador ler tudo
+        let texto = document.getElementById('texto-analogia').innerText + " " + document.getElementById('texto-aula').innerText;
+        let utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = 'pt-BR';
+        utterance.rate = 1.0;
+        synth.speak(utterance);
+    }
+    function stopAudio() {
+        synth.cancel();
+    }
+</script>
+
+</body>
+</html>
