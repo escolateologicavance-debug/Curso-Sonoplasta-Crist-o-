@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Sonoplasta Cristão</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .capa-container {
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        .logo-capa {
+            max-width: 300px;
+            width: 80%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        nav {
+            width: 90%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        .menu-btn {
+            display: block;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            transition: background 0.3s;
+        }
+
+        .menu-btn:hover {
+            background-color: #333;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="capa-container">
+        <img src="logo-512.png" alt="Logo Curso Sonoplastia" class="logo-capa">
+        <h1>Curso Sonoplasta Cristão</h1>
+    </div>
+
+    <nav>
+        <a href="modulo1.html" class="menu-btn">Módulo 1: O Caminho do Sinal</a>
+        <a href="modulo2.html" class="menu-btn">Módulo 2: A Mesa (Mixer)</a>
+        <a href="modulo3.html" class="menu-btn">Módulo 3: Física e Acústica</a>
+        <a href="modulo4.html" class="menu-btn">Módulo 4: Operacionalidade</a>
+        <a href="glossario.html" class="menu-btn">Dicionário Técnico</a>
+    </nav>
+
+    <footer>
+        &copy; 2026 - Técnica de Som Profissional
+    </footer>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+            .then(() => console.log("Service Worker Ativo"))
+            .catch(err => console.log("Erro no SW:", err));
+        }
+    </script>
+</body>
+</html>
