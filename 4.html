@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.html - Operacionalidade Avançada</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
+        .container { max-width: 750px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #4b0082; border-bottom: 3px solid #4b0082; padding-bottom: 10px; }
+        .controles-audio { background: #f3e5f5; padding: 15px; border-radius: 10px; margin: 20px 0; text-align: center; border: 1px dashed #4b0082; }
+        .btn-audio { background: #4b0082; color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-size: 1rem; margin: 5px; }
+        .secao-tecnica { background: #fff; border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 8px; border-left: 5px solid #4b0082; }
+        .perigo { background: #ffebee; border-left: 5px solid #f44336; padding: 15px; margin: 20px 0; color: #b71c1c; font-weight: bold; }
+        footer { margin-top: 40px; text-align: center; border-top: 1px solid #ddd; padding-top: 20px; }
+        .btn-voltar { color: #4b0082; text-decoration: none; font-weight: bold; }
+        b { color: #4b0082; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Módulo 4: Operacionalidade e Segurança</h1>
+
+    <div class="controles-audio">
+        <strong>Ouvir Guia Completo:</strong><br><br>
+        <button class="btn-audio" onclick="playAudio()">▶ Play</button>
+        <button class="btn-audio" style="background:#555" onclick="stopAudio()">■ Parar</button>
+    </div>
+        <div id="texto-aula">
+        <p>A operacionalidade é a diferença entre um som amador e um som profissional. O segredo não é apenas o equipamento, mas a sua <strong>postura</strong> e <strong>atenção</strong>.</p>
+
+        <div class="checklist">
+            <h3>Checklist Antes do Culto:</h3>
+            <div class="item-check">
+                <input type="checkbox"> <span><b>Passo 1:</b> Chegue pelo menos 40 minutos antes.</span>
+            </div>
+            <div class="item-check">
+                <input type="checkbox"> <span><b>Passo 2:</b> Verifique cabos e pilhas de microfones sem fio.</span>
+            </div>
+            <div class="item-check">
+                <input type="checkbox"> <span><b>Passo 3:</b> Faça o "Sound Check" (Passagem de Som) começando pelos instrumentos mais graves até as vozes principais.</span>
+            </div>
+        </div>
+
+    <div id="texto-aula">
+        <div class="perigo">
+            AVISO DE SEGURANÇA: Som envolve eletricidade. Um erro de voltagem queima o equipamento; um erro de aterramento pode causar choques fatais no músico ou pregador.
+        </div>
+
+        <div class="secao-tecnica">
+            <h3>Passo 1. Elétrica e Voltagem</h3>
+            <p>Nunca ligue nada antes de testar a rede. Em lugares novos, use um multímetro. Verifique se a rede é 110v ou 220v. <b>O aterramento é obrigatório:</b> se o cantor sentir "formigamento" no microfone, pare tudo. É risco de morte.</p>
+        </div>
+
+        <div class="secao-tecnica">
+            <h3>Passo 2. O Cuidado com os Cabos (A Técnica do Oito)</h3>
+            <p>Cabo não se enrola no cotovelo! Isso quebra os filamentos internos. Aprenda a técnica de enrolar sobreposta (em círculos ou formato de oito), respeitando a memória natural do fio. Um cabo bem cuidado dura anos; um cabo maltratado vai te deixar na mão no meio do louvor.</p>
+        </div>
+
+        <div class="secao-tecnica">
+            <h3>Passo 3. Acústica: Ambiente Aberto vs. Fechado</h3>
+            <p><b>Ambiente Fechado:</b> O desafio é a <b>Ressonância</b> e a Reverberação. O som bate nas paredes e volta "atrasado", embolando tudo. Você deve atenuar (baixar) as frequências que causam eco.</p>
+            <p><b>Ambiente Aberto:</b> Aqui o som "foge". Você precisa de mais pressão sonora (volume real) e cuidado redobrado com o vento, que pode carregar as frequências agudas e desequilibrar a mixagem.</p>
+        </div>
+
+        <div class="secao-tecnica">
+            <h3>Passo 4. Mão no Volante e Atenção Total</h3>
+            <p>Operar som é vigilância. O pregador se afasta do microfone? Você sobe o fader. Ele grita? Você desce. O músico começa um solo? Você dá destaque. <b>Nunca tire as mãos da mesa.</b> Se você sentou e relaxou, você não está operando, está apenas assistindo.</p>
+        </div>
+
+        <div class="secao-tecnica">
+            <h3>Passo 5. Ordem de Desligamento</h3>
+            <p>Para evitar o estalo (transiente) que destrói alto-falantes: <b>Primeiro</b> abaixe os faders e desligue as caixas/potências. <b>Por último</b>, desligue a mesa de som. No ligar, a ordem é inversa: Mesa primeiro, Caixas por último.</p>
+        </div>
+    </div>
+
+    <footer>
+        <a href="index.html" class="btn-voltar">⬅ Voltar ao Menu Principal</a>
+    </footer>
+</div>
+
+<script>
+    let synth = window.speechSynthesis;
+    function playAudio() {
+        synth.cancel();
+        let texto = document.getElementById('texto-aula').innerText;
+        let utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = 'pt-BR';
+        utterance.rate = 1.0;
+        synth.speak(utterance);
+    }
+    function stopAudio() {
+        synth.cancel();
+    }
+</script>
+
+</body>
+</html>
