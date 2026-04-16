@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medidor de Som - Sincrologia</title>
+    <style>
+        body { font-family: sans-serif; background: #121212; color: white; text-align: center; padding: 20px; }
+        .monitor { font-size: 5rem; font-weight: bold; margin: 40px 0; color: #00ff00; transition: 0.2s; }
+        .barra-container { width: 100%; background: #333; height: 30px; border-radius: 15px; overflow: hidden; }
+        #barra { width: 0%; height: 100%; background: #00ff00; transition: 0.1s; }
+        .controles { margin-top: 50px; }
+        .btn { padding: 15px 30px; font-size: 1.2rem; border: none; border-radius: 8px; cursor: pointer; background: #673ab7; color: white; }
+        .info { margin-top: 20px; color: #aaa; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <h2>Nível de Som em Tempo Real</h2>
+    
+    <div id="valor-db" class="monitor">0 dB</div>
+    
+    <div class="barra-container">
+        <div id="barra"></div>
+    </div>
+
+    <div class="info" id="status-texto">Clique para iniciar a medição</div>
+
+    <div class="controles">
+        <button class="btn" onclick="iniciarMedidor()">Iniciar Medidor</button>
+        <br><br>
+        <a href="index.html" style="color: #673ab7; text-decoration: none;">⬅ Voltar ao Menu</a>
+    </div>
+
+    <script>
+        async function iniciarMedidor() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const analyser = audioContext.createAnalyser();
+                const source = audioContext.createMediaStreamSource(stream);
+                
+                source.connect(analyser);
+                analyser.fftSize = 256;
+                const bufferLength = analyser.frequencyBinCount;
+                const dataArray = new Uint8Array(bufferLength);
+
+                const dbElement = document.getElementById('valor-db');
+                const barra = document.getElementById('barra');
+                const statusTexto = document.getElementById('status-texto');
+
+                function atualizar() {
+                    analyser.getByteFrequencyData(dataArray);
+                    let soma = 0;
+                    for (let i = 0; i < bufferLength; i++) {
+                        soma += dataArray[i];
+                    }
+                    let media = soma / bufferLength;
+                    
+                    // Conversão aproximada para escala de dB (Calibragem manual sugerida)
+                    let db = Math.round(media * 0.7); 
+
+                    dbElement.innerText = db + " dB";
+                    barra.style.width = Math.min(db, 100) + "%";
+
+                    // Alerta de cores
+                    if (db < 70) {
+                        dbElement.style.color = "#00ff00"; // Verde
+                        barra.style.background = "#00ff00";
+                        statusTexto.innerText = "Volume Seguro";
+                    } else if (db < 90) {
+                        dbElement.style.color = "#ffff00"; // Amarelo
+                        barra.style.background = "#ffff00";
+                        statusTexto.innerText = "Volume Moderado (Cuidado)";
+                    } else {
+                        dbElement.style.color = "#ff0000"; // Vermelho
+                        barra.style.background = "#ff0000";
+                        statusTexto.innerText = "RISCO DE FADIGA AUDITIVA!";
+                    }
+
+                    requestAnimationFrame(atualizar);
+                }
+                atualizar();
+            } catch (err) {
+                alert("Erro ao acessar o microfone: " + err);
+            }
+        }
+    </script>
+</body>
+</html>
