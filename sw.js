@@ -1,10 +1,21 @@
 const CACHE_NAME = 'sonoplastia-v1';
 const assets = [
-  './',
-  './index.html',
-  './manifest.json',
-  './logo-512.png'
+  "/",
+  "/index.html",
+  "/1.html",
+  "/2.html",
+  "/3.html",
+  "/4.html",
+  "/glossario.html",
+  "/medidor.html", // <--- ADICIONE ESTA LINHA
+  "/css/style.css",
+  "/js/app.js",
+  "/acustica.png",
+  "/mesa-detalhes.png",
+  "/cabo-tecnica.png",
+  "/logo-512.png"
 ];
+
 
 // Instala o Service Worker e armazena os arquivos no cache
 self.addEventListener('install', event => {
