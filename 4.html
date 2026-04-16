@@ -15,6 +15,15 @@
         footer { margin-top: 40px; text-align: center; border-top: 1px solid #ddd; padding-top: 20px; }
         .btn-voltar { color: #4b0082; text-decoration: none; font-weight: bold; }
         b { color: #4b0082; }
+
+        /* CORREÇÃO DA IMAGEM */
+        .img-tecnica {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px auto;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -27,7 +36,9 @@
         <button class="btn-audio" onclick="playAudio()">▶ Play</button>
         <button class="btn-audio" style="background:#555" onclick="stopAudio()">■ Parar</button>
     </div>
-        <div id="texto-aula">
+
+    <div id="texto-aula">
+
         <p>A operacionalidade é a diferença entre um som amador e um som profissional. O segredo não é apenas o equipamento, mas a sua <strong>postura</strong> e <strong>atenção</strong>.</p>
 
         <div class="checklist">
@@ -43,7 +54,6 @@
             </div>
         </div>
 
-    <div id="texto-aula">
         <div class="perigo">
             AVISO DE SEGURANÇA: Som envolve eletricidade. Um erro de voltagem queima o equipamento; um erro de aterramento pode causar choques fatais no músico ou pregador.
         </div>
@@ -53,12 +63,11 @@
             <p>Nunca ligue nada antes de testar a rede. Em lugares novos, use um multímetro. Verifique se a rede é 110v ou 220v. <b>O aterramento é obrigatório:</b> se o cantor sentir "formigamento" no microfone, pare tudo. É risco de morte.</p>
         </div>
 
-  <div class="secao-tecnica">
+        <div class="secao-tecnica">
             <h3>Passo 2. O Cuidado com os Cabos (A Técnica do Oito)</h3>
             <img src="cabo-tecnica.png" alt="Diagrama de como enrolar cabos corretamente" class="img-tecnica">
             <p>Cabo não se enrola no cotovelo! Isso quebra os filamentos internos. Aprenda a técnica de enrolar sobreposta (em círculos ou formato de oito), respeitando a memória natural do fio.</p>
         </div>
-
 
         <div class="secao-tecnica">
             <h3>Passo 3. Acústica: Ambiente Aberto vs. Fechado</h3>
@@ -75,6 +84,7 @@
             <h3>Passo 5. Ordem de Desligamento</h3>
             <p>Para evitar o estalo (transiente) que destrói alto-falantes: <b>Primeiro</b> abaixe os faders e desligue as caixas/potências. <b>Por último</b>, desligue a mesa de som. No ligar, a ordem é inversa: Mesa primeiro, Caixas por último.</p>
         </div>
+
     </div>
 
     <footer>
